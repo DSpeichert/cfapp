@@ -28,14 +28,13 @@ func main() {
 	app.Author = "Daniel Speichert"
 	app.Email = "daniel@speichert.pl"
 	app.Flags = []cli.Flag{
-		cli.StringFlag{Name: "mysql, m", Value: "user:pass@/dbname?charset=utf8&parseTime=True&loc=Local",
-			Usage: "The MySQL connection URI, see https://github.com/go-sql-driver/mysql#dsn-data-source-name", EnvVar: "MYSQL_URI"},
+		cli.StringFlag{Name: "mysql, m", Value: "",
+			Usage: "The MySQL connection URI, see https://github.com/go-sql-driver/mysql#dsn-data-source-name" +
+				" e.g.: user:pass@/dbname?charset=utf8&parseTime=True", EnvVar: "MYSQL_URI"},
 		cli.StringFlag{Name: "notify, n", Value: "",
 			Usage: "The URL to notify on certificate updates", EnvVar: "NOTIFY_URL"},
 		cli.StringFlag{Name: "listen, l", Value: ":80",
 			Usage: "IP:PORT to listen on for HTTP interface", EnvVar: "HTTP_LISTEN"},
-		cli.StringFlag{Name: "salt, s", Value: "defaultsalt",
-			Usage: "Salt used for password", EnvVar: "HTTP_LISTEN"},
 	}
 
 	app.Action = func(c *cli.Context) error {
