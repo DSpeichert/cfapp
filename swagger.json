@@ -1,0 +1,279 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "A naive, insecure HTTP REST API server serving something",
+    "title": "cfapp",
+    "version": "0.0.1"
+  },
+  "basePath": "/",
+  "paths": {
+    "/certificates": {
+      "get": {
+        "description": "This will show all available certificates by default.",
+        "tags": [
+          "certificates"
+        ],
+        "summary": "Lists certificates filtered by some parameters.",
+        "operationId": "CertificateIndex",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Offset",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Limit",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "CustomerID",
+            "name": "customer_id",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "x-go-name": "Active",
+            "name": "active",
+            "in": "query"
+          }
+        ]
+      },
+      "post": {
+        "description": "Creates a certificate",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "certificates"
+        ],
+        "summary": "Create a certificate",
+        "operationId": "CertificateCreate",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "CustomerID",
+            "name": "customer_id",
+            "in": "formData"
+          },
+          {
+            "type": "boolean",
+            "x-go-name": "Active",
+            "name": "active",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Certificate",
+            "name": "certificate",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Key",
+            "name": "key",
+            "in": "formData"
+          }
+        ]
+      }
+    },
+    "/certificates/{id}": {
+      "get": {
+        "description": "Show a specific certificate by ID",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "certificates"
+        ],
+        "summary": "Show a specific certificate by ID",
+        "operationId": "CertificateShow",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ]
+      },
+      "put": {
+        "description": "Updates a certificate",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "certificates"
+        ],
+        "summary": "Update a certificate",
+        "operationId": "CertificateUpdate",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "CustomerID",
+            "name": "customer_id",
+            "in": "formData"
+          },
+          {
+            "type": "boolean",
+            "x-go-name": "Active",
+            "name": "active",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Certificate",
+            "name": "certificate",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Key",
+            "name": "key",
+            "in": "formData"
+          }
+        ]
+      }
+    },
+    "/customers": {
+      "get": {
+        "description": "This will show all available customers by default.",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "customers"
+        ],
+        "summary": "Lists customers filtered by some parameters.",
+        "operationId": "CustomerIndex",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Offset",
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Limit",
+            "name": "limit",
+            "in": "query"
+          }
+        ]
+      },
+      "post": {
+        "description": "Creates a customer",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "customers"
+        ],
+        "summary": "Creates a customer",
+        "operationId": "CustomerCreate",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Name",
+            "name": "name",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Email",
+            "name": "email",
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Password",
+            "name": "password",
+            "in": "formData"
+          }
+        ]
+      }
+    },
+    "/customers/{id}": {
+      "get": {
+        "description": "Show a specific customer by ID",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "customers"
+        ],
+        "summary": "Show a specific customer by ID",
+        "operationId": "CustomerShow",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete a specific customer by ID",
+        "tags": [
+          "customers"
+        ],
+        "summary": "Delete a specific customer by ID",
+        "operationId": "CustomerDelete",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ]
+      }
+    }
+  }
+}
